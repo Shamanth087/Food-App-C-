@@ -1,0 +1,91 @@
+﻿<Window x:Class="Food_app.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Food_app"
+        mc:Ignorable="d"
+        Title="Order In a Hurry!" Height="639.125" Width="1131.071">
+    <Grid Margin="0,0,-6.6,-0.4">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="7*"/>
+            <ColumnDefinition Width="870*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel HorizontalAlignment="Left" Height="610" VerticalAlignment="Bottom" Width="163"  Grid.ColumnSpan="2" Background="CadetBlue">
+            <StackPanel Height="70" Margin="0,0,-962.8,0" Background="CadetBlue">
+                <TextBlock TextWrapping="Wrap" Height="69" Margin="10,0,-30.6,0" Foreground="White" FontWeight="Bold" TextAlignment="Center" FontStyle="Italic" FontSize="50" ><Run Text="Or"/><Run Text="der In a Hurry!"/></TextBlock>
+            </StackPanel>
+            <StackPanel Margin="0,0,0.2,0" Orientation="Vertical" Height="114">
+                <Button Content="Vegetarian"  x:Name="btn_veg" Margin="0,0,0.2,0" Height="120" Background="CadetBlue" FontSize="23" Foreground="White" Click="btn_veg_Click" FontWeight="Bold"  />
+            </StackPanel>
+            <StackPanel Margin="0,0,0.2,0" Orientation="Vertical" Height="120">
+                <Button Content="Non-Vegetarian" x:Name="btn_non_veg" Margin="0,0,0.2,0" Height="128" Background="CadetBlue" FontSize="19" Foreground="White" Click="btn_non_veg_Click" FontWeight="Bold"/>
+            </StackPanel>
+            <StackPanel Margin="0,0,0.2,0" Orientation="Vertical" Height="98">
+                <Button Content="Beverage" x:Name="btn_bev" Margin="0,0,0.2,0" Height="105" Background="CadetBlue" FontSize="23" Foreground="White" Click="btn_bev_Click" FontWeight="Bold"/>
+            </StackPanel>
+            <StackPanel Margin="0,0,0.2,0" Orientation="Vertical" Height="109">
+                <Button Content="Desserts" x:Name="btn_des" Margin="0,0,0.2,0" Height="106" Background="CadetBlue" FontSize="23" Foreground="White" Click="btn_des_Click" FontWeight="Bold"/>
+
+            </StackPanel>
+
+        </StackPanel>
+        <ListBox Name="Lbx_members" Grid.Column="1" HorizontalAlignment="Left" Height="466" Margin="159.2,122,0,0" VerticalAlignment="Top" Width="535">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding name}" Height="60" Padding="20" Width="100" FontWeight="Bold"/>
+                        <TextBlock Text="{Binding description}"  Height="60" Padding="20" FontStyle="Italic" FontWeight="Bold" Width="130" />
+                        <TextBlock Text="{Binding price}" Height="60" Padding="20" Width="100" FontWeight="Bold" TextAlignment="Center"/>
+                        <TextBlock Text="{Binding itemtype}" Height="60" Padding="20" Width="100" FontWeight="Bold" />
+                        <Button Name="Add" Tag="{Binding name}" Content="Add to cart" Click="Add_Click" Height="25" Width="70" Background="CadetBlue" Foreground="White"  />
+
+                    </StackPanel>
+
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+
+        </ListBox>
+
+        <StackPanel Grid.Column="1" HorizontalAlignment="Left" Height="307" Margin="711.2,122,0,0" VerticalAlignment="Top" Width="363"  Orientation="Vertical">
+            <ListBox x:Name="Lbx_cart" Height="299"  Margin="0,0,0.2,0" >
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding name}" Padding="10" FontWeight="Bold" Width="95" />
+                            <TextBlock Text="{Binding price}" Padding="10" FontWeight="Bold" Width="35"/>
+
+                            <Button x:Name="Btn_decreaseQuantity" Content="-" Click="Btn_decreaseQuantity_Click" Height="25" Padding="5" Width="25" Tag="{Binding name}" FontWeight="Bold" Background="CadetBlue" Foreground="White"/>
+                            <TextBox x:Name="tbx_qty" Text="{Binding quantity}" Width="30" Height="25" TextAlignment="Center" FontWeight="Bold"/>
+                            <Button Content="+"  x:Name="Btn_increaseQuantity" Click="Btn_increaseQuantity_Click" Tag="{Binding name}" Height="25" Width="25" Padding="5" FontWeight="Bold" Background="CadetBlue" Foreground="White" />
+                            <TextBlock Width="35" Text="{Binding quantityPrice}" Padding="10" TextAlignment="Center" FontWeight="Bold"  />
+                            <Button Content="Remove Item" x:Name="Btn_Remove" Click="Btn_Remove_Click"  Height="25" Width="85" Padding="5" Tag="{Binding name}" Background="CadetBlue" Foreground="White"/>
+
+
+
+
+                        </StackPanel>
+
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+
+
+
+            </ListBox>
+        </StackPanel>
+        <StackPanel Grid.Column="1" HorizontalAlignment="Left" Height="46" Margin="711.2,542,0,0" VerticalAlignment="Top" Width="363">
+            <Button Content="Place Order"  Height="47" Background="CadetBlue" Foreground="White" FontSize="15" Click="Button_Click_1" FontWeight="Bold" Margin="0,0,0.2,0"/>
+        </StackPanel>
+        <StackPanel Grid.Column="1"  HorizontalAlignment="Left" Height="30" Margin="811.2,87,0,0" VerticalAlignment="Top" Width="127"/>
+        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="904.2,434,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="170" Height="26" Name="Tbk_totalPrice" FontWeight="Bold" TextAlignment="Center"/>
+        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="811.2,85,0,0" TextWrapping="Wrap" Text="Cart" TextAlignment="Center" FontSize="25"  Foreground="CadetBlue" VerticalAlignment="Top" Height="32" Width="108" FontWeight="Bold"/>
+        <Button Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75"/>
+        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="711.2,434,0,0" TextWrapping="Wrap" Text="Total Price(Euros):" Foreground="CadetBlue" FontSize="15" FontWeight="Bold" VerticalAlignment="Top" RenderTransformOrigin="0.425,1.55" Height="26" Width="128"/>
+        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="159.2,87,0,0" TextWrapping="Wrap" Text="Item Name" VerticalAlignment="Top" Width="120"  Height="30" TextAlignment="Center" FontSize="15" FontWeight="Bold" Foreground="CadetBlue"/>
+        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="284.2,87,0,0" TextWrapping="Wrap" Text="Major Ingridients" VerticalAlignment="Top" Width="120"  Height="30" TextAlignment="Center" FontSize="14" FontWeight="Bold" Foreground="CadetBlue"/>
+        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="409.2,87,0,0" TextWrapping="Wrap" Text="Price(Euros)" FontWeight="Bold" FontSize="15" Foreground="CadetBlue" VerticalAlignment="Top" Width="120"  Height="30" TextAlignment="Center"/>
+        <Label Content=" Enter Table Number:" Background="White" Foreground="CadetBlue" FontSize="15" FontWeight="Bold" Grid.Column="1" Margin="699.2,494,252.2,74" />
+        <TextBox x:Name="tbx_table" TextWrapping="Wrap" Text="" FontWeight="Bold" TextAlignment="Center" Grid.Column="1" Margin="904.2,493,48.2,74"/>
+
+    </Grid>
+</Window>
